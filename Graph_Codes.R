@@ -5,7 +5,7 @@ pacman::p_load(gganimate,gapminder,rmdformats,ggpubr,ggplot2,readxl, RColorBrewe
 
 
 
-scatter_plot=function(x,y, xtitle="X Title", ytitle="Y Title", title="Title"){
+scatter=function(x,y, xtitle="X Title", ytitle="Y Title", title="Title"){
 r=cor(x, y)
 if(r <=0){
 xp=max(x)-(max(x)-min(x))/4
@@ -39,7 +39,7 @@ data=data
 x=data$`X Variable`
 y=data$`Y Variable`
 
-scatter_plot(x, y) # scatter_plot(x variable, y variable, xtitle="", ytitle="", title="")
+scatter(x, y) # scatter_plot(x variable, y variable, xtitle="", ytitle="", title="")
 
 
 
