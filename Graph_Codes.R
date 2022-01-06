@@ -15,7 +15,7 @@ if(r>0){
   xp=max(x)-(max(x)-min(x))/4
   yp=min(y)+(max(y)-min(y))/4
 }
-data=data.frame(x,y)
+data=na.omit(data.frame(x,y))
 p=ggplot(data, aes(x =x, y=y)) + stat_cor(method = "pearson", label.x = xp, label.y = yp)
 p=p+ geom_smooth(method=lm, se=T, fullrange=FALSE, colour="black")+geom_point(colour = "darkcyan", size = 3)
 p=p+theme_bw()
