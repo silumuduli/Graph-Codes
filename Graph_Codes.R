@@ -6,7 +6,7 @@ pacman::p_load(gganimate,gapminder,rmdformats,ggpubr,ggplot2,readxl, RColorBrewe
 
 
 scatter=function(x,y, xtitle="X Title", ytitle="Y Title", title="Title"){
-r=cor(x, y)
+r=cor(x, y,use = "complete.obs")
 if(r <=0){
 xp=max(x)-(max(x)-min(x))/4
 yp=max(y)-(max(y)-min(y))/4
@@ -48,7 +48,7 @@ scatter(x, y) # scatter_plot(x variable, y variable, xtitle="", ytitle="", title
 
 
 scatter_plot_cat=function(x,y, cat, xtitle="X Title", ytitle="Y Title", title="Title", catname="Category Name"){
-  r=cor(x, y)
+  r=cor(x, y,use = "complete.obs")
   if(r <=0){
     xp=max(x)-(max(x)-min(x))/4
     yp=max(y)-(max(y)-min(y))/4
