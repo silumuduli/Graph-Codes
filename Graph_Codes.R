@@ -27,8 +27,8 @@ p=p + theme(plot.title = element_text(hjust = 0.5),plot.caption = element_text(h
 plot(p)
 }
 
-data <- read_excel("C:/Users/RBI/Dropbox/Rcodes/data.xlsx")
-data=read_excel("Dropbox/Rcodes/data.xlsx")
+#data <- read_excel("C:/Users/RBI/Dropbox/Rcodes/data.xlsx")
+#data=read_excel("Dropbox/Rcodes/data.xlsx")
 
 x=rnorm(200)
 y=rnorm(200)+1.02*x
@@ -69,7 +69,7 @@ plot(p)
 }
 
 
-data <- read_excel("Book1.xlsx")
+#data <- read_excel("Book1.xlsx")
 
 
 #data <- read_excel("C:/Users/RBI/Dropbox/Rcodes/data.xlsx")
@@ -117,11 +117,11 @@ plot_bar(x, y)
 
 #######################################################
 
-data <- read_excel("C:/Users/RBI/Dropbox/Rcodes/data.xlsx", 
-                   sheet = "Sheet2")
-time=data$Time
-x=data$`Internal Financing`
-y=data$`External Financing`
+#data <- read_excel("C:/Users/RBI/Dropbox/Rcodes/data.xlsx", 
+                   #sheet = "Sheet2")
+#time=data$Time
+#x=data$`Internal Financing`
+#y=data$`External Financing`
 
 plot_ts=function(x,y, time, linewidth=3, xtitle="X Title", ytitle="Y Title", title="Title", startyear=c(2001,1), frequency=12, legendname=c("x name", "y name")){
 
