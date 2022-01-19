@@ -41,7 +41,7 @@ data=data
 x=data$`X Variable`
 y=data$`Y Variable`
 
-scatter(x, y) # scatter_plot(x variable, y variable, xtitle="", ytitle="", title="")
+#scatter(x, y) # scatter_plot(x variable, y variable, xtitle="", ytitle="", title="")
 
 
 
@@ -87,7 +87,7 @@ cat=data$Company
 #y=x+rnorm(length(x))
 
 
-scatter_plot_cat(x, y, cat,title="", xtitle = "log (Deposits)", ytitle="Net NPA to Net Advances (%)", catname="Ownership") # scatter_plot(x variable, y yariable,category, xtitle="", ytitle="", title="")
+#scatter_plot_cat(x, y, cat,title="", xtitle = "log (Deposits)", ytitle="Net NPA to Net Advances (%)", catname="Ownership") # scatter_plot(x variable, y yariable,category, xtitle="", ytitle="", title="")
 
 
 #####################################################################
@@ -114,7 +114,7 @@ head(data)
 x=data$Category
 y=data$Value
 
-plot_bar(x, y)
+#plot_bar(x, y)
 
 
 #######################################################
@@ -139,7 +139,7 @@ y=ts(y, start =startyear, frequency=frequency)
   
 }
 
-plot_ts(x, y, startyear = c(2012,1), frequency = 4)
+#plot_ts(x, y, startyear = c(2012,1), frequency = 4)
 
 #################################################################
 ####  Secondary Axis Plot ######
@@ -167,11 +167,11 @@ secondary_plot=function(x,y1,y2,xtitle,y1title,y2title){
   p
 }
 
-secondary_plot(x,y1,y2,xtitle,y1title,y2title)
+#secondary_plot(x,y1,y2,xtitle,y1title,y2title)
 
 ##Animated Images
-pltt=secondary_plot(x,y1,y2,xtitle,y1title,y2title)
-pltt+transition_time(x)
+#pltt=secondary_plot(x,y1,y2,xtitle,y1title,y2title)
+#pltt+transition_time(x)
 
 
 
