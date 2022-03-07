@@ -154,7 +154,7 @@ y2title=c("Y2 Title")
 
 secondary_plot=function(x,y1,y2,xtitle,y1title,y2title){
   data=data.frame(x,y1,y2)
-  k=mean(mean(y1,na.rm = TRUE)/mean(y2,na.rm = TRUE),median(y1,na.rm = TRUE)/median(y2,na.rm = TRUE))
+  k=mean(mean(y1,na.rm = TRUE)/mean(y2,na.rm = TRUE),median(y1,na.rm = TRUE)/median(y2,na.rm = TRUE))/sd(y2,na.rm=T)
   p <- ggplot(data, aes(x = x))+theme_bw()
   p <- p + geom_line(aes(y = y1, colour =y1title))
   p <- p + geom_line(aes(y = y2*k, colour = y2title))
