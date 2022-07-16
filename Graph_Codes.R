@@ -175,3 +175,30 @@ secondary_plot=function(x,y1,y2,xtitle,y1title,y2title){
 
 
 
+
+## SHADED PHASES TIME SERIES GRAPH ##
+
+
+
+
+if (!require(pacman)) install.packages("pacman")
+pacman::p_load(dplyr,tidyr,RColorBrewer,ggplot2)
+
+df <- economics %>%select(date, psavert, uempmed) # Data to be plotted
+colnames(df)=c("Time","Position Vacancy","Unemployment Rate")
+rc=sample(c(0,1),574, replace = T)  # Recession Dummy
+
+
+df=df%>%gather(key = "variable", value = "value", -Time)
+df$rec=rep(rc,length(unique(df$variable)))
+
+
+ggplot(df, aes(Time, value))+geom_line(aes(color = variable), size = 1)+scale_color_brewer(palette = "Set1") +
+  stat_summary(geom = "rect",
+    aes(group = data.table::rleid(rec)),
+    fun.min = min, fun.max = max,
+    orientation = "y", ymin = -Inf, ymax = Inf, alpha=0.2)+theme_bw()+theme(legend.position ="bottom",legend.title=element_blank())
+
+
+
+
