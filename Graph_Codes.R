@@ -183,7 +183,7 @@ secondary_plot=function(x,y1,y2,xtitle,y1title,y2title){
 
 df <- economics %>%select(date, psavert, unemploy,uempmed) # Data to be plotted
 #colnames(df)=c("Time","Position Vacancy","Unemployment Rate")
-df$rec=sample(c(0,1),574, replace = T)  # Recession Dummy
+df$rec=sample(c(0,1),length(df$date), replace = T)  # Recession Dummy
 
 
 ggplot(df, aes(x=date)) +
