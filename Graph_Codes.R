@@ -175,30 +175,30 @@ secondary_plot=function(x,y1,y2,xtitle,y1title,y2title){
 
 
 
-
+###############################################################################################################
 ## SHADED PHASES TIME SERIES GRAPH ##
 
 
+### With and Without Secondary Axis
+
+df <- economics %>%select(date, psavert, unemploy,uempmed) # Data to be plotted
+#colnames(df)=c("Time","Position Vacancy","Unemployment Rate")
+df$rec=sample(c(0,1),574, replace = T)  # Recession Dummy
 
 
-if (!require(pacman)) install.packages("pacman")
-pacman::p_load(dplyr,tidyr,RColorBrewer,ggplot2)
-
-df <- economics %>%select(date, psavert, uempmed) # Data to be plotted
-colnames(df)=c("Time","Position Vacancy","Unemployment Rate")
-rc=sample(c(0,1),574, replace = T)  # Recession Dummy
-
-
-df=df%>%gather(key = "variable", value = "value", -Time)
-df$rec=rep(rc,length(unique(df$variable)))
-
-
-ggplot(df, aes(Time, value))+geom_line(aes(color = variable), size = 1)+scale_color_brewer(palette = "Set1") +
+ggplot(df, aes(x=date)) +
+  geom_line(aes(y = unemploy, color="U L")) +
+  geom_line(aes(y = uempmed*1000, color="U R (right)")) +
+  geom_line(aes(y = psavert*950, colour = "E L (right)")) +
+  scale_y_continuous(sec.axis = sec_axis(~./1000, name = ""))+
+  scale_y_continuous(sec.axis = sec_axis(~./950, name = ""))+labs(y = "",
+                                                                   x ="Time",
+                                                                   colour = "")+
+  scale_colour_manual(values =brewer.pal(n = 8, name = "Dark2")) +
   stat_summary(geom = "rect",
-    aes(group = data.table::rleid(rec)),
-    fun.min = min, fun.max = max,
-    orientation = "y", ymin = -Inf, ymax = Inf, alpha=0.2)+theme_bw()+theme(legend.position ="bottom",legend.title=element_blank())
-
+               aes(group = data.table::rleid(rec),y=1),
+               fun.min = min, fun.max = max,
+               orientation = "y", ymin = -Inf, ymax = Inf, alpha=0.3)+theme_bw()+theme(legend.position ="bottom",legend.title=element_blank())
 
 
 
