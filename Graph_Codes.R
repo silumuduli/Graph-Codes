@@ -257,7 +257,7 @@ density.plot1=function(u,xtitle="Inflation",name1="Before",adj=2){
     geom_vline(data=mu, aes(xintercept=grp.mean, color=Category),
                linetype="dashed")+theme_bw()+scale_color_manual(values=c( "dodgerblue4", "indianred3"))+scale_fill_manual(values=c("dodgerblue4", "indianred3"))
   p=p+expand_limits(x = min(value) -0.5*(max(value)-min(value)))+expand_limits(x = max(value) +0.5*(max(value)-min(value)))
-  p=p+xlab(xtitle) + ylab("Density")+theme(legend.position="bottom")+annotate("text", x =c( max(value), max(value)), y = c(0.75*max((density(value)$y)),0.67*max((density(value)$y))), label =c(paste('Sample Mean = ',round(mean(value),digits=2)),""),parse = FALSE)
+  p=p+xlab(xtitle) + ylab("Density")+theme(legend.position="bottom",legend.title = element_blank())+annotate("text", x =c( max(value), max(value)), y = c(0.75*max((density(value)$y)),0.67*max((density(value)$y))), label =c(paste('Sample Mean = ',round(mean(value),digits=2)),""),parse = FALSE)
   p
 }
 
@@ -280,7 +280,7 @@ density.plot2=function(u,v,xtitle="Inflation",name1="Before", name2="After",adj=
     geom_vline(data=mu, aes(xintercept=grp.mean, color=Category),
                linetype="dashed")+theme_bw()+scale_color_manual(values=c("indianred3", "dodgerblue4", "indianred3"))+scale_fill_manual(values=c("indianred3", "dodgerblue4", "indianred3"))
   p=p+expand_limits(x = min(value) -0.5*(max(value)-min(value)))+expand_limits(x = max(value) +0.5*(max(value)-min(value)))
-  p=p+xlab(xtitle) + ylab("Density")+theme(legend.position="bottom")+annotate("text", x =c( max(value), max(value)), y = c(0.75*max((density(value)$y)),0.67*max((density(value)$y))), label =c(paste('Mean Diff=',md),paste('t-test p-value <',pval)),parse = FALSE)
+  p=p+xlab(xtitle) + ylab("Density")+theme(legend.position="bottom",legend.title = element_blank())+annotate("text", x =c( max(value), max(value)), y = c(0.75*max((density(value)$y)),0.67*max((density(value)$y))), label =c(paste('Mean Diff=',md),paste('t-test p-value <',pval)),parse = FALSE)
   p
 }
 
