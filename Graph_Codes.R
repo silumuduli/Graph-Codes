@@ -236,3 +236,51 @@ l=y1
 u=y2
 conf_plot(x,y,l,u,col="#B54C6E", xlab="xlab",ylab="ylab")
 
+
+
+#####################################################################
+######################## Kernel Density Plot ########################
+#####################################################################
+
+
+#### Single Variable
+density.plot1=function(u,xtitle="Inflation",name1="Before",adj=2){
+  if (!require(pacman)) install.packages("pacman")
+  pacman::p_load(ggplot2,data.table,dplyr, plyr)
+  g1=u
+  value <- c(g1)
+  Category  <- c(rep(name1, length(g1)))
+  dt    <- data.table(Category,value)
+  mu <- ddply(dt, "Category", summarise, grp.mean=mean(value))
+  p<-ggplot(dt, aes(x=value, color=Category)) +
+    geom_density(adjust=adj, alpha=0.2)+
+    geom_vline(data=mu, aes(xintercept=grp.mean, color=Category),
+               linetype="dashed")+theme_bw()+scale_color_manual(values=c( "dodgerblue4", "indianred3"))+scale_fill_manual(values=c("dodgerblue4", "indianred3"))
+  p=p+expand_limits(x = min(value) -0.5*(max(value)-min(value)))+expand_limits(x = max(value) +0.5*(max(value)-min(value)))
+  p=p+xlab(xtitle) + ylab("Density")+annotate("text", x =c( max(value), max(value)), y = c(0.75*max((density(value)$y)),0.67*max((density(value)$y))), label =c(paste('Sample Mean = ',round(mean(value),digits=2)),""),parse = FALSE)
+  p
+}
+
+
+#### Two Variables ####
+density.plot2=function(u,v,xtitle="Inflation",name1="Before", name2="After",adj=2){
+  if (!require(pacman)) install.packages("pacman")
+  pacman::p_load(ggplot2,data.table,dplyr, plyr)
+  g1=u
+  g2=v
+  tt=t.test(g1,g2,paired = TRUE)
+  md=round(tt$estimate,digits=2)
+  pval=round(tt$p.value,digits=2)
+  value <- c(g1, g2)
+  Category  <- c(rep(name1, length(g1)), rep(name2, length(g2)))
+  dt    <- data.table(Category,value)
+  mu <- ddply(dt, "Category", summarise, grp.mean=mean(value))
+  p<-ggplot(dt, aes(x=value, color=Category)) +
+    geom_density(adjust=adj, alpha=0.2)+
+    geom_vline(data=mu, aes(xintercept=grp.mean, color=Category),
+               linetype="dashed")+theme_bw()+scale_color_manual(values=c("indianred3", "dodgerblue4", "indianred3"))+scale_fill_manual(values=c("indianred3", "dodgerblue4", "indianred3"))
+  p=p+expand_limits(x = min(value) -0.5*(max(value)-min(value)))+expand_limits(x = max(value) +0.5*(max(value)-min(value)))
+  p=p+xlab(xtitle) + ylab("Density")+annotate("text", x =c( max(value), max(value)), y = c(0.75*max((density(value)$y)),0.67*max((density(value)$y))), label =c(paste('Mean Diff=',md),paste('t-test p-value <',pval)),parse = FALSE)
+  p
+}
+
