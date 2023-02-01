@@ -11,12 +11,12 @@ x=data$x
 y=data$y
 r=cor(x, y)
 if(r <=0){
-xp=max(x)-(max(x)-min(x))/4
-yp=max(y)-(max(y)-min(y))/4
+xp=max(x)-(max(x)-min(x))/3
+yp=max(y)-(max(y)-min(y))/3
 }
 if(r>0){
-  xp=max(x)-(max(x)-min(x))/4
-  yp=min(y)+(max(y)-min(y))/4
+  xp=max(x)-(max(x)-min(x))/3
+  yp=min(y)+(max(y)-min(y))/3
 }
 p=ggplot(data, aes(x =x, y=y)) + stat_cor(method = "pearson", label.x = xp, label.y = yp)
 p=p+ geom_smooth(method=lm, se=T, fullrange=FALSE, colour="black")+geom_point(colour = "darkcyan", size = 3)
