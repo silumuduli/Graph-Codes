@@ -19,11 +19,11 @@ if(r>0){
   yp=min(y)+(max(y)-min(y))/5
 }
 p=ggplot(data, aes(x =x, y=y)) + stat_cor(method = "pearson", label.x = xp, label.y = yp,p.accuracy = 0.01, r.accuracy = 0.01)
-p=p+ geom_smooth(method=lm, se=T, fullrange=FALSE, colour="black")+geom_point(colour = "darkcyan", size = 3)
+p=p+ geom_smooth(method=lm, se=T, fullrange=FALSE, colour="black")+geom_point(colour = "darkcyan", size = 2)
 p=p+theme_bw()
-p=p+theme(text=element_text(face="bold", size=12))
+p=p+theme(text=element_text(face="bold", size=11))
 p=p+ggtitle(title)+grids(linetype = "dashed")
-p=p+theme(legend.position = "bottom")+theme(text=element_text(face="bold", size=14))
+p=p+theme(legend.position = "bottom")+theme(text=element_text(face="bold", size=11))
 p=p+labs(caption = "",x=xtitle,y=ytitle)
 p=p + theme(plot.title = element_text(hjust = 0.5),plot.caption = element_text(hjust = 0))
 plot(p)
