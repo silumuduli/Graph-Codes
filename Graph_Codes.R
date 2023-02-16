@@ -284,3 +284,15 @@ density.plot2=function(u,v,xtitle="Inflation",name1="Before", name2="After",adj=
   p
 }
 
+
+
+make_panel=function(dataname=data, panelname="Panel Name", variable="Variable Name"){
+  data=dataname
+  colnames(data)[which(colnames(data)==panelname)]=c("Panel")
+  colnames(data)[which(colnames(data)==variable)]=c("Variable")
+  molted=melt(data,id.vars=c("Panel","Variable"))
+  pdata=dcast(molted,Panel+variable~Variable, fun.aggregate =mean)   #id is column
+  colnames(pdata)[which(colnames(pdata)=="Panel")]=panelname
+  colnames(pdata)[which(colnames(pdata)=="variable")]=c("Time")
+  return(pdata)
+}
