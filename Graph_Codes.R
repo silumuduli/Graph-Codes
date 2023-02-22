@@ -206,7 +206,7 @@ ggplot(df, aes(x=date)) +
 
 
 ##########################################
-####### Confidence Interval Plot #########
+####### Shaded region Plot #########
 ##########################################
 
 
@@ -221,9 +221,9 @@ ggplot(mydata, aes(x=x)) +
   ylab(ylab)+ grids(linetype = "dashed")
 }
 
-x <- seq(0, 20, 0.001)
 
 
+#### Confidence interval  plot
 
 conf_plot=function(x,y,l,u,col="#006496", xlab="xlab",ylab="ylab"){
 mydata = data.frame(x,y,l,u)
@@ -238,6 +238,7 @@ ggplot(mydata, aes(x=x)) +
 
 # Data
 set.seed(1)
+x <- seq(0, 20, 0.001)
 y1 <- 2 * cos(x) + 8
 y2 <- 3 * sin(x) + 4
 z=(y1+y2)/2
