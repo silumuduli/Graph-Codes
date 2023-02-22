@@ -223,6 +223,19 @@ ggplot(mydata, aes(x=x)) +
 
 x <- seq(0, 20, 0.001)
 
+
+
+conf_plot=function(x,y,l,u,col="#006496", xlab="xlab",ylab="ylab"){
+mydata = data.frame(x,y,l,u)
+ggplot(mydata, aes(x=x)) +
+  geom_line(aes(y = l),linetype = "dashed", colour=col) + geom_hline(yintercept=0, linetype="dashed", color = "red")+
+  geom_line(aes(y = u),linetype = "dashed",colour=col) + 
+  geom_line(aes(y = y),colour=col) + 
+  geom_ribbon(aes(ymin = l, ymax =u), fill = col, alpha = .1)+theme_bw()+theme(legend.position="none")+ 
+  xlab(xlab) +
+  ylab(ylab)+ grids(linetype = "dashed")
+}
+
 # Data
 set.seed(1)
 y1 <- 2 * cos(x) + 8
@@ -235,17 +248,6 @@ y=z
 l=y1
 u=y2
 conf_plot(x,y,l,u,col="#B54C6E", xlab="xlab",ylab="ylab")
-
-conf_plot=function(x,y,l,u,col="#006496", xlab="xlab",ylab="ylab"){
-mydata = data.frame(x,y,l,u)
-ggplot(mydata, aes(x=x)) +
-  geom_line(aes(y = l),linetype = "dashed", colour=col) + geom_hline(yintercept=0, linetype="dashed", color = "red")+
-  geom_line(aes(y = u),linetype = "dashed",colour=col) + 
-  geom_line(aes(y = y),colour=col) + 
-  geom_ribbon(aes(ymin = l, ymax =u), fill = col, alpha = .1)+theme_bw()+theme(legend.position="none")+ 
-  xlab(xlab) +
-  ylab(ylab)+ grids(linetype = "dashed")
-}
 
 #####################################################################
 ######################## Kernel Density Plot ########################
